@@ -14,4 +14,4 @@ Any changes are welcome if they:
 
 ## Security
 
-I assumed security was "_good enough for me_" but if you are planning on using this for any serious projects and don't know anything about cryptography, **DON'T USE THIS**. For anyone that understands cryptography, you probably know more than me. So any help from you will help.
+I assumed security was "_good enough for me_" but if you are planning on using this for any serious projects and don't know anything about cryptography, **DON'T USE THIS**. For anyone that understands cryptography, you probably know more than me. So any help from you will seriously help.
