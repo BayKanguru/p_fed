@@ -1,4 +1,5 @@
-"""Storage of data
+"""
+Storage of data
 """
 
 
