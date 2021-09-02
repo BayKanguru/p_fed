@@ -36,4 +36,4 @@ I assumed security was "_good enough for me_" but if you are planning on using t
 
 1. I couldn't quite figure out how to store the salt for passwords. Currently it's a set string of bytes located in p_fed.py.
 2. The printed text for verbosity levels doesn't feel quite right.
-3. Probably many more, if you find anything
+3. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
