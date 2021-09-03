@@ -8,6 +8,9 @@ Algorithms used are:
 - Scrypt - as kind of a hash function to store passwords safely inside the files
 - PBKDF2HMAC - for key derivation
 
+Salts for Scrypt and PBKDF2HMAC are stored in the output file along with initialization vector, encrypted data, and digesetd password.
+If someone knows a better way to store salts, please tell me.
+
 I would still consider p_fed work in progress.
 **Be careful!**
 
@@ -24,9 +27,9 @@ I made this for myself initially and decided to put it here for people that migh
 
 Any changes are welcome if they:
 
-1. Improve security
-2. Improve accessibility
-3. Make code more compliant with the standards
+1. Improve security,
+2. Make code more compliant with PEP8 and maybe PEP484,
+3. Make package structure more usable and readable
 
 ## Security
 
@@ -34,6 +37,5 @@ I assumed security was "_good enough for me_" but if you are planning on using t
 
 ## Things you can help with
 
-1. I couldn't quite figure out how to store the salt for passwords. Currently it's a set string of bytes located in p_fed.py.
-2. The printed text for verbosity levels doesn't feel quite right.
-3. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
+1. The printed text for verbosity levels doesn't feel quite right.
+2. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
