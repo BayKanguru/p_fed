@@ -1,18 +1,20 @@
-"""
-Encryption and decryption of data
+"""functions for encryption/decryption of data with passwords.  Works 
+only if every argument is same except data.
 """
 
 import os
 
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes, padding
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 
-def encrypt(data, password, salt, initialization_vector):
-    """Encrypts the data using AES-CBC and PBKDF2HMAC as 
-    key derivation function from the password 
+def encrypt(data: bytes, password: str, salt: bytes, initialization_vector: bytes) -> bytes:
+    """Encrypts the data using AES256-CBC.  Key derivation from 
+    password is done using PBKDF2HMAC.  Padding for AES256 is done
+    using PKCS7.
     """
+
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA3_512(),
         length=32,
@@ -31,9 +33,12 @@ def encrypt(data, password, salt, initialization_vector):
     return encrypted
 
 
-def decrypt(data, password, salt, initialization_vector):
-    """Decrypts the data generated from "encrypt" function 
+def decrypt(data: bytes, password: str, salt: bytes, initialization_vector: bytes) -> bytes:
+    """Decrypts AES256-CBC encrypted data using a password.  Only 
+    decrypts correctly if key derivation algorithm, padding algorithm, 
+    salt and initialization_vector are the same as encryption.
     """
+
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA3_512(),
         length=32,
