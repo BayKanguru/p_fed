@@ -42,10 +42,8 @@ I assumed security was "_good enough for me_" but if you are planning on using t
 
 ## Things you can help with
 
-### Important
-
 1. No other encryption algorithm is supported except AES-256, it would be better if it did.
 2. Similarly, no other mode of operation is supported other than CBC, it might be good enough but, different modes of operation for different use cases would be better.
-3. Currently some algorithms might be overkill like SHA3_512 for PBKDF2HMAC, options for those or just simpler versions would help on weaker machines.
+3. Currently using SHA3-512 for PBKDF2HMAC hash algorithm to still have security even if there are serious vulnerabilities found for SHA256 at some point. But SHA3 might be too slow for some, if someone can verify the security with blake2b or find another option, that would be appreciated.
 4. The printed text for verbosity levels doesn't feel quite right.
 5. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
