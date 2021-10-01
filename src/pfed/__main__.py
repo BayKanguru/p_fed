@@ -140,7 +140,7 @@ def run():
                 with open(args.output, "wb") as f:
                     f.write(decrypted)
         else:
-            with open(current_file + "/logs/log.log", "a") as f:
+            with open(current_file + "/logs/wrong_pass.log", "a") as f:
                 f.write(
                     "[time:{}][file:{}]: wrong password\n".format(datetime.datetime.now().isoformat(), args.input_file))
 
