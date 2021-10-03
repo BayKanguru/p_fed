@@ -6,17 +6,17 @@
 
 A utility for encrypting files using a password and decrypting files encrypted with it.
 Encryption is done using [pyca/cryptography](https://github.com/pyca/cryptography) library.
-Algorithms used are:
 
-- AES256 - for encryption
-- Scrypt - as kind of a hash function to store passwords safely inside the files
-- PBKDF2HMAC - for key derivation
+## About dev branch
 
-Salts for Scrypt and PBKDF2HMAC are stored in the output file along with initialization vector, encrypted data, and digesetd password.
-If someone knows a better way to store salts, please tell me.
+New features and fixes are done in here first. do not use this branch except for development.
+Might not work sometimes.
 
-I would still consider p_fed work in progress.
-**Be careful!**
+## Current state of dev
+
+Does not work because decryption is not fully implemented yet.
+But most of the encryption code is done.
+Now program is compatible with other modes of operation or encryption algorithms.
 
 ## Warning
 
