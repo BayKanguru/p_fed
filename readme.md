@@ -9,7 +9,7 @@ Encryption is done using [pyca/cryptography](https://github.com/pyca/cryptograph
 
 ## About dev branch
 
-New features and fixes are done in here first. do not use this branch except for development.
+New features and fixes are done in here first. Do not use this branch except for development.
 Might not work sometimes.
 
 ## Current state of dev
