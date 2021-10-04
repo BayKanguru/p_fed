@@ -33,6 +33,7 @@ I assumed security was "_good enough for me_" but if you are planning on using t
 ## Things you can help with
 
 1. Might delete contents of files on errors? Seen that happen a few times but there were bigger problems then.
-1. There are no cl arguments for using different encryption algorithms or modes of operation.
-1. Currently using SHA3-512 for PBKDF2HMAC hash algorithm to still have security even if there are serious vulnerabilities found for SHA256 at some point. But SHA3 might be too slow for some, if someone can verify the security with blake2b or find another option, that would be appreciated.
-1. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
+2. There are no cl arguments for using different encryption algorithms or modes of operation.
+3. Detection of unencrypted files so program can tell the difference.
+4. Currently using SHA3-512 for PBKDF2HMAC hash algorithm to still have security even if there are serious vulnerabilities found for SHA256 at some point. But SHA3 might be too slow for some, if someone can verify the security with blake2b or find another option, that would be appreciated.
+5. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
