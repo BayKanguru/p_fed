@@ -42,26 +42,35 @@ def format_encrypted_data(
     stored_data_list_len = len(stored_data_list_b).to_bytes(32, "big")
     p_hash_lenght = len(digested_password).to_bytes(32, "big")
 
-    formatted_data = stored_data_list_len, stored_data_list_b, stored_data, p_hash_lenght + iv + encryption_salt + \
+    formatted_data = stored_data_list_len + stored_data_list_b + stored_data + p_hash_lenght + encryption_salt + \
         digest_salt + digested_password + data
     return formatted_data
 
 
 def read_formatted_encrypted_data(formatted_data: bytes) -> tuple:
     """Splits formatted_data into its components.  Used for decryption."""
+    def unpad(data, block_size):
+        unpadder = padding.PKCS7(block_size).unpadder()
+        return unpadder.update(data) + unpadder.finalize()
+
     stored_data_list_len = int.from_bytes(formatted_data[:32], "big")
-    stored_data_list_b = str(
-        formatted_data[32:stored_data_list_len], encoding="utf8")
-    stored_data_list = stored_data_list_b.split("-")
+    stored_data_list_s = str(
+        formatted_data[32:32+stored_data_list_len], encoding="utf8")
+    stored_data_list = stored_data_list_s.split("-")
+    stored_data_list = [s for s in stored_data_list if s]
+
     stored_data = formatted_data[32 +
-                                 stored_data_list_len:len(stored_data_list)*256]
+                                 stored_data_list_len:
+                                 32 +
+                                 stored_data_list_len +
+                                 len(stored_data_list)*32]
     for i, data in enumerate(stored_data_list):
         data_dict = {}
-        data_dict[data] = stored_data[i*256:(i+1)*256]
+        data_dict[data] = unpad(stored_data[i*32:(i+1)*32], 256)
 
     formatted_data = formatted_data[32
                                     + stored_data_list_len
-                                    + (len(stored_data_list) * 256):]
+                                    + len(stored_data_list) * 32:]
     hash_lenght = int.from_bytes(formatted_data[:32], "big")
     encryption_salt = formatted_data[32:160]
     digest_salt = formatted_data[160:288]
@@ -75,6 +84,5 @@ def read_formatted_encrypted_data(formatted_data: bytes) -> tuple:
         "digested_password": digested_password,
         "data": data
     }
-    un_formatted_data.update(stored_data)
-
+    un_formatted_data.update(data_dict)
     return un_formatted_data

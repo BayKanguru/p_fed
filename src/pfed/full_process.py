@@ -86,13 +86,18 @@ def encrypt_and_prepare(
 def decrypt_and_prepare(
         password,
         input_data,
+        scrypt_salt_lenght=128,
         scrypt_lenght=512,
         scrypt_n=2**20,
         scrypt_r=8,
         scrypt_p=1,
-        password_encoding="utf8"):
-    decryptable = True
-    current_file = str(pathlib.Path(__file__).parent.resolve())
+        password_encoding="utf8",
+        encryption_salt_lenght=128,
+        pbkdf2_hash_algorithm=hashes.SHA3_512,
+        pbkdf2_lenght=32,
+        pbkdf2_iterations=1000000,
+        encryption_algorithm=algorithms.AES,
+        mode=modes.CBC,):
 
     all_data = fmt.read_formatted_encrypted_data(input_data)
 
@@ -108,11 +113,11 @@ def decrypt_and_prepare(
         pass_storage_kdf.verify(
             bytes(password, encoding=password_encoding), all_data["digested_password"])
     except exceptions.InvalidKey:
-        print(
+        raise exceptions.InvalidKey(
             "The password you entered is wrong, or the encrypted file has been tampered with.")
-        decryptable = False
+    except Exception as exc:
+        print(exc)
+    decrypted = ed.decrypt(
+        all_data["data"], password, all_data["encryption_salt"], all_data["iv"])
 
-    if decryptable:
-        decrypted = ed.decrypt(
-            all_data["data"], password, all_data["encryption_salt"], all_data["iv"])
-        return decrypted
+    return decrypted
