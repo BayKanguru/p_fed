@@ -1,22 +1,12 @@
 # p_fed
 
 <p align="center">
-<b>THIS IS NOT WRITTEN BY AN EXPERT, EXPECT SECURITY ISSUES!</b> But if you are, please consider helping.
+<b>THIS IS NOT WRITTEN BY AN EXPERT, EXPECT SECURITY ISSUES!</b> But if you are, please consider helping.<br>
+<b>I have seen it delete contents of files so it is not ready for use.</b>
 </p>
 
 A utility for encrypting files using a password and decrypting files encrypted with it.
 Encryption is done using [pyca/cryptography](https://github.com/pyca/cryptography) library.
-
-## About dev branch
-
-New features and fixes are done in here first. Do not use this branch except for development.
-Might not work sometimes.
-
-## Current state of dev
-
-Does not work because decryption is not fully implemented yet.
-But most of the encryption code is done.
-Now program is compatible with other modes of operation or encryption algorithms.
 
 ## Warning
 
@@ -42,8 +32,7 @@ I assumed security was "_good enough for me_" but if you are planning on using t
 
 ## Things you can help with
 
-1. No other encryption algorithm is supported except AES-256, it would be better if it did.
-2. Similarly, no other mode of operation is supported other than CBC, it might be good enough but, different modes of operation for different use cases would be better.
-3. Currently using SHA3-512 for PBKDF2HMAC hash algorithm to still have security even if there are serious vulnerabilities found for SHA256 at some point. But SHA3 might be too slow for some, if someone can verify the security with blake2b or find another option, that would be appreciated.
-4. The printed text for verbosity levels doesn't feel quite right.
-5. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
+1. Might delete contents of files on errors? Seen that happen a few times but there were bigger problems then.
+1. There are no cl arguments for using different encryption algorithms or modes of operation.
+1. Currently using SHA3-512 for PBKDF2HMAC hash algorithm to still have security even if there are serious vulnerabilities found for SHA256 at some point. But SHA3 might be too slow for some, if someone can verify the security with blake2b or find another option, that would be appreciated.
+1. Probably many more, if you find anything tell me about it. And if you can, try fixing it yourself then make a pull request.
